@@ -1,5 +1,4 @@
 <section class="gallery">
-  GET GALLERY.HTML
   <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
     {{ $images := slice }}
     {{ range $image := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
