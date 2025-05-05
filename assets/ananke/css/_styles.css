@@ -18,3 +18,63 @@
 .nested-links a{
   overflow-wrap: break-word;
 }
+
+/* Main Menu */
+.main-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.main-menu li {
+  position: relative;
+}
+
+/* Submenu (Dropdown) */
+.submenu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: transparent;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+/* Show submenu on hover (for desktop) */
+.dropdown:hover .submenu {
+  display: block;
+}
+
+/* Submenu Items */
+.submenu li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+.submenu li a:hover {
+  background: #080808;
+}
+
+/* Mobile Dropdown */
+@media (max-width: 768px) {
+  .submenu {
+    position: static;
+  }
+  .submenu.show {
+    display: block;
+  }
+}

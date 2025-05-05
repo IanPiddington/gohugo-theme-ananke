@@ -38,16 +38,25 @@
     "tachyons": "4.12.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@davidsneighbour/markdownlint-config": "2025.1.1",
-    "@davidsneighbour/release-config": "2025.1.1",
-    "@davidsneighbour/tools": "2025.1.1",
-    "dotenv": "16.4.7"
+    "@davidsneighbour/markdownlint-config": "2025.0.2",
+    "@davidsneighbour/release-config": "2025.0.2",
+    "@davidsneighbour/tools": "2025.0.2",
+    "dotenv": "16.4.7",
+    "prettier": "^3.5.3",
+    "prettier-plugin-css-order": "^2.1.2",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-organize-attributes": "^1.0.0",
+    "stylelint": "^16.17.0",
+    "stylelint-config-standard-scss": "^14.0.0"
   },
   "scripts": {
+    "deploy": "cd exampleSite; hugo;",
     "release": "wireit",
     "release:minor": "wireit",
-    "release:pre": "wireit"
+    "release:pre": "wireit",
+    "server": "wireit",
+    "prettier": "prettier . --write",
+    "lint": "stylelint assets/css/*.{css,scss}"
   },
   "wireit": {
     "release": {
@@ -58,6 +67,12 @@
     },
     "release:pre": {
       "command": "commit-and-tag-version --sign -a -t \"v\" --releaseCommitMessageFormat \"chore(release): v{{currentTag}}\" --prerelease prerelease -- --no-verify"
+    },
+    "server": {
+      "command": "cd exampleSite; rm -rf public; hugo server -D -E -F --environment gargulus --navigateToChanged --disableFastRender --forceSyncStatic --logLevel debug --tlsAuto --printI18nWarnings --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints 2>&1 | tee -a hugo.log"
+    },
+    "server:fail": {
+      "command": "cd exampleSite; rm -rf public; hugo server -D -E -F --environment gargulus --navigateToChanged --disableFastRender --forceSyncStatic --logLevel debug --tlsAuto --panicOnWarning --printI18nWarnings --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints 2>&1 | tee -a hugo.log"
     }
   }
 }

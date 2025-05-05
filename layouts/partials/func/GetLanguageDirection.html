@@ -1,5 +1,5 @@
 {{ $dir := "" }}
-{{ if compare.Ge hugo.Version "0.67.1" }}
+{{ if ge hugo.Version "0.67.1" }}
   {{ with  site.Language.LanguageDirection }}
      {{ $dir = . }}
   {{ end }}

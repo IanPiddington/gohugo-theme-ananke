@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{ partial "gallery.html" . }}
+  {{ partial "related.html" . }}
+  {{ with .Content }}
+    <section class="prose">
+      {{ . }}
+    </section>
+  {{ end }}
+{{ end }}

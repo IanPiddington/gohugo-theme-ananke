@@ -32,6 +32,7 @@ go.work
 
 ### Hugo ###
 # Generated files by hugo
+/dev/
 /public/
 /resources/_gen/
 /assets/jsconfig.json
